@@ -20,30 +20,42 @@ print(mean_x)
 print(mean_y)
 print (mean_z)
 
-new_data_set = np.array([my_data[:,0]-mean_x,my_data[:,1]-mean_y,my_data[:,2]-mean_z])
+new_data_set = np.column_stack([my_data[:,0]-mean_x,my_data[:,1]-mean_y,my_data[:,2]-mean_z])
 new_data_set_trans = np.transpose(new_data_set)
-new_prod = np.dot(new_data_set,new_data_set_trans)/1000
+new_prod = np.dot(new_data_set_trans,new_data_set)/1000
 print ("----------------------")
-print(new_prod)
+print("Covariance Matrix: \n",new_prod)
 print ("----------------------")
-print(new_data_set)
+#print(new_data_set)
 
 
 #Finding Eigen values
 
 eigen_val, eigen_vector = la.eig(new_prod)
-print("Eigen Values: ",eigen_val)
-print("Eigen Vector: ",eigen_vector)
+print("Eigen Values: \n",eigen_val)
+print("Eigen Vector: \n",eigen_vector)
+
+feature_vector = np.column_stack([eigen_vector[:,0],eigen_vector[:,2]])
+print ("----------------------")
+print("Feature Vector: \n",feature_vector)
+print ("----------------------")
+
+newdata = np.dot(feature_vector.T,new_data_set.T)
+print ("----------------------")
+print(newdata)
+print ("----------------------")
+
+
 
 #Finding variance of x
 var_x = np.var(x)
-#print ("Variance for x:",var_x)
+print ("Variance for x:",var_x)
 #Finding variance of y
 var_y = np.var(y)
-#print ("Variance for y:",var_y)
+print ("Variance for y:",var_y)
 #Finding variance of z
 var_z = np.var(z)
-#print ("Variance for z:",var_z)
+print ("Variance for z:",var_z)
 
 cov_x_y = np.cov(x,y)
 #print (cov_x_y)
