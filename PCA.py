@@ -1,7 +1,7 @@
 import numpy as np
 from numpy import linalg as la
 
-my_data = np.loadtxt('./dataset_1.csv',skiprows=1,delimiter=',')
+my_data = np.loadtxt('G:/UNCC/Subjects/ML/dataset_1.csv',skiprows=1,delimiter=',')
 print ("Data present in the .csv file: \n",my_data)
 
 def PCA(input):
